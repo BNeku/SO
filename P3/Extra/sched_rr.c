@@ -44,8 +44,11 @@ static void enqueue_task_rr(task_t* t,runqueue_t* rq, int preempted)
 {
 	struct rr_data* cs_data=(struct rr_data*) t->tcs_data;
 
-	if (t->on_rq || is_idle_task(t))
+	if (is_idle_task(t))
 		return;
+    
+	//Sanity check, the task should NOT be on the runqueue
+	assert(!t->on_rq);
 
 	insert_slist(&rq->tasks,t); //Push task
 	cs_data->remaining_ticks_slice=rr_quantum; // Reset slice

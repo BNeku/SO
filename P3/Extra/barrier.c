@@ -1,8 +1,5 @@
 #include "barrier.h"
 #include <errno.h>
-//Práctica 3 SO, Grupo 2ºE
-//Nerea Jiménez
-//Pablo Miranda
 
 #ifdef POSIX_BARRIER
 

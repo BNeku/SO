@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#script práctica 3 Extra SO (añadido MULTIRR)
-#realizado por Nerea Jiménez y Pablo Miranda, 2ºE de ingeniería del software
 
 echo "Introduce el nombre del fichero (tiene que estar dentro de la carpeta examples): "
 read nfile #nombre archivo
@@ -21,13 +19,13 @@ if [ -d resultados/ ]; then #si existe resultados se borra la carpeta y todo su 
 	fi
 mkdir resultados/ #creamos resultados
 
-listadeSchedulersDisponibles=("SJF RR FCFS PRIO MULTIRR")
+listadeSchedulersDisponibles=("RRdynQ SJF RR FCFS PRIO")
 for nameSched in $listadeSchedulersDisponibles #para cada algoritmo
 do
 	echo "Generando las gráficas con $nameSched"
 	for (( cpuIterator=1 ; cpuIterator <= $ncpus ; cpuIterator++ ))
 	do
-		if [ "$nameSched" == "PRIO" ] || [ "$nameSched" == "MULTIRR" ]; then
+		if [ "$nameSched" == "PRIO" ]; then
 			./schedsim -i examples/$nfile -n $cpuIterator -s $nameSched -p #tiene un parametro adicional
 		else
 			./schedsim -i examples/$nfile -n $cpuIterator -s $nameSched
@@ -43,4 +41,5 @@ do
 done
 
 exit 0
+
 

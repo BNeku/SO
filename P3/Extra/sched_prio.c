@@ -1,6 +1,5 @@
 #include "sched.h"
 
-
 static task_t* pick_next_task_prio(runqueue_t* rq){
 	task_t* task=head_slist(&rq->tasks); //igual que en fcfs porque la lista está ordenada (por prioridades)
 

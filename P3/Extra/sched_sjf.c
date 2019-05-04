@@ -21,8 +21,11 @@ static int compare_tasks_cpu_burst(void *t1,void *t2)
 static void enqueue_task_sjf(task_t* t,runqueue_t* rq, int preempted)
 {
 
-	if (t->on_rq || is_idle_task(t))
+	if (is_idle_task(t))
 		return;
+    
+	//Sanity check, the task should NOT be on the runqueue
+	assert(!t->on_rq);
 
 	if (t->flags & TF_INSERT_FRONT) {
 		//Clear flag

@@ -5,6 +5,7 @@
 #include "slist.h"
 #include <stdio.h>
 #include <pthread.h>
+#include <assert.h>
 
 #define MAX_EXEC_PHASES 10
 #define MAX_TASK_NAME 20
@@ -117,7 +118,7 @@ extern sched_class_t rr_sched;
 extern sched_class_t sjf_sched;
 extern sched_class_t fcfs_sched;
 extern sched_class_t prio_sched;
-extern sched_class_t multiRR_sched;
+extern sched_class_t RR_dynQ_sched;
 
 /* Numerical IDs for the available scheduling algorithms */
 enum {
@@ -125,7 +126,7 @@ enum {
 	SJF_SCHED,
 	FCFS_SCHED,
 	PRIO_SCHED,
-	MULTIRR_SCHED,
+	RRdynQ_SCHED,
 	NR_AVAILABLE_SCHEDULERS
 };
 
@@ -141,7 +142,7 @@ static const sched_choice_t available_schedulers[NR_AVAILABLE_SCHEDULERS]= {
 	{SJF_SCHED,"SJF",&sjf_sched},
 	{FCFS_SCHED,"FCFS",&fcfs_sched},
 	{PRIO_SCHED,"PRIO",&prio_sched},
-	{MULTIRR_SCHED,"MULTIRR",&multiRR_sched},
+	{RRdynQ_SCHED,"RRdynQ",&RR_dynQ_sched},
 };
 
 
